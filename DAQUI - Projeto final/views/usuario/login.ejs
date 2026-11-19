@@ -1,0 +1,80 @@
+<%- include('../admin/partials/header', { categorias }) %>
+
+
+  <main class="daqui-login-pagina">
+    <div class="daqui-login">
+
+      <section class="daqui-login-esquerda">
+        <div class="daqui-login-formulario">
+
+          <% if (sucesso) { %>
+            <div class="daqui-login-alerta daqui-login-sucesso">
+              Cadastro realizado! Faça login para continuar.
+            </div>
+            <% } %>
+
+              <% if (erro) { %>
+                <div class="daqui-login-alerta daqui-login-erro">
+                  <%= erro %>
+                </div>
+                <% } %>
+
+                  <form action="/usuario/login" method="POST">
+
+                    <div class="daqui-login-campo">
+                      <label for="email">Digite seu e-mail</label>
+                      <input type="email" id="email" name="email" value="<%= email || '' %>" required>
+                    </div>
+
+                    <div class="daqui-login-campo">
+                      <label for="senha">Digite sua senha</label>
+                      <input type="password" id="senha" name="senha" required>
+                    </div>
+
+                    <button type="submit" class="daqui-login-botao">
+                      Entrar na conta
+                    </button>
+
+                  </form>
+
+                  <div class="daqui-login-cadastro">
+                    <p>Não tenho uma conta.</p>
+                    <a href="/admin/escolher-cadastro">Cadastrar-me</a>
+                  </div>
+                  <div class="daqui-login-cadastro">
+                    <p>Vendedor?</p>
+                    <a href="/admin/login">Faça login</a>
+                  </div>
+
+        </div>
+      </section>
+
+      <section class="daqui-login-direita">
+        <div class="daqui-login-apresentacao">
+
+          <img src="/img/logo.png" alt="Logo DAQUI" class=" daqui-login-logo">
+
+          <h1>Bem vindo(a) ao DAQUI!</h1>
+
+          <h2>Que bom ter você por aqui! 💚</h2>
+
+          <div class="daqui-login-texto">
+            <p>
+              Obrigado por escolher o DAQUI! Cada compra
+              valoriza nossos produtores locais, fortalece
+              a economia da nossa região e mantém vivas
+              as tradições que fazem parte da nossa história.
+            </p>
+
+            <p>
+              Esperamos que você encontre produtos especiais
+              e leve um pedacinho da nossa terra para o seu lar.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+  

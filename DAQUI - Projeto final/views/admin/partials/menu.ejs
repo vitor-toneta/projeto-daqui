@@ -1,0 +1,98 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0b3b2e; z-index: 9999; padding: 10px 0;">
+    <div class="container">
+        
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="/admin/index">
+            <img src="/img/logobranca.png" alt="DAQUI" style="height: 50px; object-fit: contain;">
+            <span class="ms-3 fs-5 fw-bold" style="color: #e2ebd8; border-left: 2px solid #e2ebd8; padding-left: 15px;">Painel do Vendedor</span>
+        </a>
+
+        <!-- Botão Hamburger (Mobile) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Itens do Menu -->
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 fw-bold gap-3">
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/index" style="color: #e2ebd8;">
+                        <i class="bi bi-house me-1"></i> Início
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="color: #e2ebd8;">
+                        <i class="bi bi-box-seam me-1"></i> Produtos
+                    </a>
+                    <ul class="dropdown-menu shadow">
+                        <li>
+                            <a class="dropdown-item" href="/admin/comida/form-cadastrar">
+                                <i class="bi bi-plus-circle me-1"></i> Cadastrar comida
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/admin/comida">
+                                <i class="bi bi-list me-1"></i> Listar comidas
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="/admin/artesanato/form-cadastrar">
+                                <i class="bi bi-plus-circle me-1"></i> Cadastrar artesanato
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/admin/artesanato">
+                                <i class="bi bi-list me-1"></i> Listar artesanato
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="color: #e2ebd8;">
+                        <i class="bi bi-tags me-1"></i> Categorias
+                    </a>
+                    <ul class="dropdown-menu shadow">
+                        <li>
+                            <a class="dropdown-item" href="/admin/categorias/form-cadastrar">
+                                <i class="bi bi-plus-circle me-1"></i> Cadastrar categoria
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/admin/categorias">
+                                <i class="bi bi-list me-1"></i> Listar categorias
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+
+            <!-- Botão de Perfil do Vendedor -->
+            <div class="d-flex align-items-center mt-3 mt-lg-0">
+                <a href="/admin/perfil" class="text-decoration-none d-flex align-items-center" style="color: #e2ebd8; gap: 10px;">
+                    
+                    <!-- Verifica se o vendedor tem foto -->
+                    <% if (typeof vendedor !== 'undefined' && vendedor && vendedor.foto) { %>
+                        <img src="/uploads/<%= vendedor.foto %>" alt="Foto do Vendedor" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #e2ebd8;">
+                    <% } else { %>
+                        <!-- Ícone padrão se não tiver foto -->
+                        <div class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background-color: #e2ebd8; color: #0b3b2e; font-size: 20px;">
+                            <i class="bi bi-shop"></i>
+                        </div>
+                    <% } %>
+                    
+                    <!-- Nome da Empresa -->
+                    <div class="d-flex flex-column" style="line-height: 1.2;">
+                        <span style="font-size: 12px; opacity: 0.8;">Olá,</span>
+                        <span class="fw-bold"><%= typeof vendedor !== 'undefined' && vendedor ? vendedor.empresa : 'Vendedor' %></span>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</nav>

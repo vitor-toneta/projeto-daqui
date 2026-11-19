@@ -1,0 +1,49 @@
+<div class="gradiente">
+    <%- include('partials/header', { categorias }) %>
+    <%- include('partials/menu') %>
+
+    <main class="container py-5 d-flex align-items-center" style="min-height: 70vh;">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-6 col-lg-5">
+                <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5" style="background-color: #0b3b2e; color: #ffffff;">
+
+                    <h4 class="text-center fw-bold mb-4" style="color: #ffffff;">
+                        Altere sua senha
+                    </h4>
+
+                    <% if (erro) { %>
+                        <div class="alert alert-danger text-start rounded-3 border-0 bg-white text-danger">
+                            <i class="bi bi-exclamation-triangle me-1"></i> <%= erro %>
+                        </div>
+                    <% } %>
+
+                    <form action="/admin/perfil/senha" method="POST">
+
+                        <div class="mb-3 text-start">
+                            <label class="form-label fw-bold" style="color: #ffffff; font-size: 0.9rem;">Nova Senha</label>
+                            <input type="password" name="nova_senha" class="form-control border-0 rounded-3 p-3 shadow-sm" style="background-color: #ffffff; color: #333;" minlength="6" required>
+                        </div>
+
+                        <div class="mb-4 text-start">
+                            <label class="form-label fw-bold" style="color: #ffffff; font-size: 0.9rem;">Confirmar Nova Senha</label>
+                            <input type="password" name="confirmar_senha" class="form-control border-0 rounded-3 p-3 shadow-sm" style="background-color: #ffffff; color: #333;" minlength="6" required>
+                        </div>
+
+                        <button type="submit" class="btn w-100 rounded-3 p-3 fw-bold mt-2" style="background-color: #ffffff; color: #0b3b2e; border: none;">
+                            Confirmar Alteração
+                        </button>
+
+                        <div class="text-center mt-4">
+                            <a href="/admin/perfil" class="text-decoration-none" style="color: #a0c4b8; font-size: 0.9rem; transition: 0.3s;">
+                                <i class="bi bi-arrow-left"></i> Voltar ao Perfil
+                            </a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</div>

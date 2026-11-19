@@ -1,0 +1,93 @@
+<div class="gradiente">
+    <%- include('../cliente/partials/header') %>
+    <%- include('../cliente/partials/menu') %>
+
+    <main class="daqui-perfil-pagina">
+        <section class="daqui-perfil-container">
+
+            <div class="daqui-perfil-cabecalho">
+                <div class="daqui-perfil-foto">
+                    <% if (usuario.foto) { %>
+                        <img src="/uploads/<%= usuario.foto %>" alt="Foto de perfil">
+                    <% } else { %>
+                        <div class="daqui-perfil-sem-foto">
+                            <i class="bi bi-person"></i>
+                        </div>
+                    <% } %>
+                </div>
+
+                <h1 class="daqui-perfil-titulo">
+                    Olá, <%= usuario.nome %>!
+                </h1>
+            </div>
+
+            <div class="daqui-perfil-campo">
+                <label>Endereço</label>
+                <div class="daqui-perfil-valor">
+                    <%= usuario.endereco || 'Não informado' %>
+                </div>
+            </div>
+
+            <div class="daqui-perfil-campo">
+                <label>Cidade</label>
+                <div class="daqui-perfil-valor">
+                    <%= usuario.cidade || 'Não informada' %>
+                </div>
+            </div>
+
+            <div class="daqui-perfil-linha">
+                <div class="daqui-perfil-campo">
+                    <label>CPF</label>
+                    <div class="daqui-perfil-valor">
+                        <%= usuario.cpf || 'Não informado' %>
+                    </div>
+                </div>
+
+                <div class="daqui-perfil-campo">
+                    <label>Telefone</label>
+                    <div class="daqui-perfil-valor">
+                        <%= usuario.telefone || 'Não informado' %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="daqui-perfil-linha-final">
+                <div class="daqui-perfil-acoes">
+                    <a href="/usuario/perfil/editar" class="daqui-perfil-botao">
+                        Editar perfil
+                    </a>
+                </div>
+
+                <div class="daqui-perfil-campo">
+                    <label>E-mail</label>
+                    <div class="daqui-perfil-valor">
+                        <%= usuario.email %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="daqui-perfil-seguranca">
+                <i class="bi bi-shield-lock-fill"></i>
+
+                <p>Mantenha a segurança da sua senha.</p>
+
+                <a href="/usuario/perfil/senha" class="daqui-perfil-botao-senha">
+                    Alterar senha aqui
+                </a>
+            </div>
+
+            <div class="daqui-perfil-rodape">
+                <a href="/" class="daqui-perfil-voltar">
+                    Voltar ao início
+                </a>
+
+                <a href="/usuario/logout" class="daqui-perfil-sair">
+                    Sair da conta
+                </a>
+            </div>
+
+        </section>
+    </main>
+
+    <%- include('../cliente/partials/footer') %>
+</div>

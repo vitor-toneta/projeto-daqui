@@ -1,0 +1,108 @@
+<div class="gradiente">
+    <%- include('partials/header', { categorias }) %>
+    <%- include('partials/menu') %>
+
+    <main class="daqui-perfil-pagina">
+        <section class="daqui-perfil-container">
+
+            <!-- Cabeçalho (Foto e Nome da Empresa) -->
+            <div class="daqui-perfil-cabecalho">
+                <div class="daqui-perfil-foto">
+                    <% if (vendedor.foto) { %>
+                        <img src="/uploads/<%= vendedor.foto %>" alt="Foto de perfil">
+                    <% } else { %>
+                        <div class="daqui-perfil-sem-foto">
+                            <i class="bi bi-shop"></i> <!-- Ícone de lojinha em vez de pessoa -->
+                        </div>
+                    <% } %>
+                </div>
+
+                <h1 class="daqui-perfil-titulo">
+                    Olá, <%= vendedor.nome_empresa %>!
+                </h1>
+            </div>
+
+            <!-- Nome do Responsável -->
+            <div class="daqui-perfil-campo">
+                <label>Nome do Responsável</label>
+                <div class="daqui-perfil-valor">
+                    <%= vendedor.nome_responsavel || 'Não informado' %>
+                </div>
+            </div>
+
+            <!-- Endereço -->
+            <div class="daqui-perfil-campo">
+                <label>Endereço</label>
+                <div class="daqui-perfil-valor">
+                    <%= vendedor.endereco || 'Não informado' %>
+                </div>
+            </div>
+
+            <!-- Cidade -->
+            <div class="daqui-perfil-campo">
+                <label>Cidade</label>
+                <div class="daqui-perfil-valor">
+                    <%= vendedor.cidade || 'Não informada' %>
+                </div>
+            </div>
+
+            <!-- CPF e Telefone -->
+            <div class="daqui-perfil-linha">
+                <div class="daqui-perfil-campo">
+                    <label>CPF</label>
+                    <div class="daqui-perfil-valor">
+                        <%= vendedor.cpf || 'Não informado' %>
+                    </div>
+                </div>
+
+                <div class="daqui-perfil-campo">
+                    <label>Telefone</label>
+                    <div class="daqui-perfil-valor">
+                        <%= vendedor.telefone || 'Não informado' %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-mail e Botão Editar (mas o editar ainda vamos criar) -->
+            <div class="daqui-perfil-linha-final">
+                <div class="daqui-perfil-acoes">
+                    <a href="/admin/perfil/editar" class="daqui-perfil-botao">
+                        Editar perfil
+                    </a>
+                </div>
+
+                <div class="daqui-perfil-campo">
+                    <label>E-mail Corporativo</label>
+                    <div class="daqui-perfil-valor">
+                        <%= vendedor.email %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Segurança (Senha) -->
+            <div class="daqui-perfil-seguranca">
+                <i class="bi bi-shield-lock-fill"></i>
+                <p>Mantenha a segurança da sua senha.</p>
+                <a href="/admin/perfil/senha" class="daqui-perfil-botao-senha">
+                    Alterar senha aqui
+                </a>
+            </div>
+
+            <!-- Botões de Voltar e Sair -->
+            <div class="daqui-perfil-rodape">
+                <!-- Aqui ele volta para o painel de produtos, não para a loja -->
+                <a href="/admin/index" class="daqui-perfil-voltar">
+                    Voltar ao Painel
+                </a>
+
+                <!-- Para deslogar o vendedor, precisamos criar essa rota depois -->
+                <a href="/admin/logout" class="daqui-perfil-sair">
+                    Sair da conta
+                </a>
+            </div>
+
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</div>

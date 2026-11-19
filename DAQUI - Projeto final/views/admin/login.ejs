@@ -1,0 +1,80 @@
+<%- include('../admin/partials/header') %>
+
+<main class="daqui-login-pagina">
+  <div class="daqui-login">
+
+    <section class="daqui-login-esquerda">
+      <div class="daqui-login-formulario">
+
+        <% if (typeof sucesso !== 'undefined' && sucesso) { %>
+          <div class="daqui-login-alerta daqui-login-sucesso">
+            Conta de vendedor criada com sucesso! Faça login para continuar.
+          </div>
+        <% } %>
+
+        <% if (typeof erro !== 'undefined' && erro) { %>
+          <div class="daqui-login-alerta daqui-login-erro">
+            <%= erro %>
+          </div>
+        <% } %>
+
+        <form action="/admin/login" method="POST">
+
+          <div class="daqui-login-campo">
+            <label for="email">Digite seu e-mail corporativo</label>
+            <input type="email" id="email" name="email" value="<%= typeof email !== 'undefined' ? email : '' %>" required>
+          </div>
+
+          <div class="daqui-login-campo">
+            <label for="senha">Digite sua senha</label>
+            <input type="password" id="senha" name="senha" required>
+          </div>
+
+          <button type="submit" class="daqui-login-botao">
+            Entrar no Painel
+          </button>
+
+        </form>
+
+        <div class="daqui-login-cadastro">
+          <p>Ainda não é parceiro?</p>
+          <a href="/usuario/cadastro-vendedor">Cadastre sua empresa</a>
+        </div>
+
+        <div class="daqui-login-cadastro">
+          <p>É um cliente?</p>
+          <a href="/usuario/login">Voltar para a loja</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="daqui-login-direita">
+      <div class="daqui-login-apresentacao">
+
+        <img src="/img/logo.png" alt="Logo DAQUI" class=" daqui-login-logo">
+
+        <h1>Bem vindo(a) ao DAQUI!</h1>
+
+        <h2>Área exclusiva para Vendedores 💚</h2>
+
+        <div class="daqui-login-texto">
+          <p>
+            Este é o seu espaço para gerenciar o seu negócio. Aqui você pode 
+            cadastrar seus produtos, atualizar o seu estoque e acompanhar 
+            as vendas da sua loja.
+          </p>
+
+          <p>
+            Agradecemos por fazer parte da nossa rede e por levar o melhor 
+            da nossa terra para os clientes!
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<%- include('../admin/partials/footer') %>

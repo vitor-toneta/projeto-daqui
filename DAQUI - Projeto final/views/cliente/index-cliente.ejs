@@ -1,0 +1,272 @@
+<div class="gradiente">
+
+    <div class="queijo-decorativo">
+        <img src="/img/queijo.png" alt="Queijo decorativo">
+    </div>
+    <div class="ceramica-decorativa">
+        <img src="/img/ceramica.png" alt="Queijo decorativo">
+    </div>
+    <div class="tomate-decorativo">
+        <img src="/img/tomato.png" alt="Queijo decorativo">
+    </div>
+
+    <!-- ========================================== -->
+    <!-- POP-UP DAQUI ISOLADO (INSERIDO AQUI)       -->
+    <!-- ========================================== -->
+    <div class="popup-daqui-modal" id="popupDaqui">
+        <div class="modal-box">
+            <!-- Botão de Fechar -->
+            <a href="#" class="btn-close-modal"
+                onclick="document.getElementById('popupDaqui').style.display='none'; return false;" title="Fechar">X</a>
+
+            <div class="modal-wrapper">
+                <!-- Coluna Esquerda -->
+                <div class="modal-col-text">
+
+                    <!-- Logo -->
+                    <div class="modal-logo">
+                        <svg width="60" height="60" viewBox="0 0 100 100" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M50 10C39.5 10 31 18.5 31 29C31 42.5 50 60 50 60C50 60 69 42.5 69 29C69 18.5 60.5 10 50 10ZM50 37C45.6 37 42 33.4 42 29C42 24.6 45.6 21 50 21C54.4 21 58 24.6 58 29C58 33.4 54.4 37 50 37Z"
+                                fill="#006B3D" />
+                            <path d="M20 45V85H80V45L50 25L20 45Z" stroke="#006B3D" stroke-width="6"
+                                stroke-linejoin="round" />
+                            <path d="M35 85V60H65V85" stroke="#006B3D" stroke-width="6" stroke-linejoin="round" />
+                        </svg>
+
+                        <div class="modal-logo-text">DAQUI</div>
+                        <div class="modal-logo-sub">DO NOSSO LUGAR PARA O SEU LAR.</div>
+                    </div>
+
+                    <!-- Textos -->
+                    <h1 class="modal-title">Há cinco anos valorizando o que é DAQUI.</h1>
+                    <p class="modal-desc">Somos uma plataforma de comércio eletrônico criada para aproximar pequenos
+                        produtores, comerciantes e consumidores do Meio-Oeste catarinense. Aqui, produtos regionais
+                        ganham espaço no mundo digital.</p>
+
+                    <!-- Botão -->
+                    <a href="#" class="modal-btn">
+                        Valorizamos o comércio local <span class="icone-check">✓</span>
+                    </a>
+                </div>
+
+                <!-- Coluna Direita -->
+                <div class="modal-col-img">
+                    <!-- Substitua o link 'src' pela imagem real -->
+                    <img src="/img/fotoriodopeixe.png"
+                        alt="Vista aérea do Vale do Rio do Peixe" class="modal-image">
+
+                    <div class="modal-tag">
+                        Vale do Rio do Peixe - SC
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ========================================== -->
+    <!-- FIM DO POP-UP DAQUI                        -->
+    <!-- ========================================== -->
+
+    <%- include('../cliente/partials/header') %>
+        <%- include('../cliente/partials/menu') %>
+
+            <!-- Conteúdo Principal -->
+            <main class="container">
+                <!-- Banner Principal -->
+                <section class="banner-section">
+                    <div class="banner-content">
+                        <h2>
+                            Produtos regionais, direto do produtor para você.
+                        </h2>
+                        <p>
+                            Valorize o que é nosso. Encontre alimentos, artesanatos e produtos de pequenos comerciantes
+                            do Vale do Rio do Peixe.
+                        </p>
+                        <div>
+                            <a href="#destaques" class="btn-primary">Ver produtos</a>
+                        </div>
+                    </div>
+
+                    <div class="banner">
+                        <img src="/img/imagemdec.png" width="400">
+                    </div>
+                </section>
+
+                <!-- Seção Destaques -->
+                <section id="destaques" class="destaques-section">
+                    <h3>Produtos em Destaque:</h3>
+
+                    <!-- Grade com os 4 Cards Preenchidos -->
+                    <div class="cards-grid">
+                        <!-- Card 1 -->
+                        <% comidaDestaques.forEach(comida=> {
+
+                            %>
+                            <div class="product-card">
+                                <a href="/produto-comida/<%=comida.id%>">
+                                    <img src="/uploads/<%= comida.imagem%>" alt="Queijo Colonial" class="product-img">
+                                </a>
+                                <h4>
+                                    <%= comida.nome%>
+                                </h4>
+                                <div class="card-details">
+                                    <p><strong>Validade:</strong>
+                                        <%= comida.validade%>
+                                    </p>
+                                    <p><strong>Peso:</strong>
+                                        <%= comida.peso%>Kg
+                                    </p>
+                                    <p><strong>Categoria:</strong>
+                                        <%= comida.categoria%>
+                                    </p>
+                                </div>
+                                <div class="card-price">R$ <%= comida.valor%> <span></span></div>
+                                <form action="/carrinho/adicionarComida/<%=comida.id%>" method="post">
+                                    <button type="submit" class="btn-add-cart"> ADICIONAR A CESTA</button>
+                                </form>
+
+                            </div>
+                            <% }) %>
+
+                                <% artesanatoDestaques.forEach(artesanato=> {
+
+                                    %>
+                                    <div class="product-card ">
+                                        <a href="/produto-artesanato/<%=artesanato.id%>">
+                                            <img src="/uploads/<%= artesanato.imagem%>" class="product-img">
+                                        </a>
+                                        <h4>
+                                            <%= artesanato.nome%>
+                                        </h4>
+                                        <div class="card-details">
+                                            <p><strong>Nome:</strong>
+                                                <%= artesanato.nome %>
+                                            </p>
+                                            <p><strong>Categoria:</strong>
+                                                <%= artesanato.categoria %>
+                                            </p>
+                                            <p><strong>Peso:</strong>
+                                                <%= artesanato.peso %>Kg
+                                            </p>
+                                        </div>
+                                        <div class="card-price">R$ <%= artesanato.valor%> <span></span></div>
+                                        <form action="/carrinho/adicionar/<%=artesanato.id%>" method="post">
+                                            <button type="submit" class="btn-add-cart"> ADICIONAR A CESTA</button>
+                                        </form>
+                                    </div>
+                                    <% }) %>
+                    </div>
+                </section>
+                <section class="destaques-section">
+                    <h3>Produtos em Comidas:</h3>
+
+                    <!-- Grade com os 4 Cards Preenchidos -->
+                    <div class="cards-grid">
+                        <!-- Card 1 -->
+                        <% comida.forEach(comida=> {
+
+                            %>
+                            <div class="product-card">
+                                <a href="/produto-comida/<%=comida.id %>">
+                                    <img src="/uploads/<%= comida.imagem%>" alt="Queijo Colonial" class="product-img">
+                                </a>
+                                <h4>
+                                    <%= comida.nome%>
+                                </h4>
+                                <div class="card-details">
+                                    <p><strong>Validade:</strong>
+                                        <%= comida.validade%>
+                                    </p>
+                                    <p><strong>Peso:</strong>
+                                        <%= comida.peso%>Kg
+                                    </p>
+                                    <p><strong>Categoria:</strong>
+                                        <%= comida.categoria%>
+                                    </p>
+                                </div>
+                                <div class="card-price">R$ <%= comida.valor%> <span></span></div>
+                                <form action="/carrinho/adicionarComida/<%=comida.id%>" method="post">
+                                    <button type="submit" class="btn-add-cart"> ADICIONAR A CESTA</button>
+                                </form>
+                            </div>
+                            <% }) %>
+
+
+                    </div>
+                </section>
+                <section class="destaques-section">
+                    <h3>Produtos em Artesanato:</h3>
+
+                    <!-- Grade com os 4 Cards Preenchidos -->
+                    <div class="cards-grid">
+                        <!-- Card 1 -->
+
+
+                        <% artesanato.forEach(artesanato=> {
+
+                            %>
+                            <div class="product-card ">
+                                <a href="/produto-artesanato/<%= artesanato.id %>">
+                                    <img src="/uploads/<%= artesanato.imagem%>" class="product-img">
+                                </a>
+                                <h4>
+                                    <%= artesanato.nome%>
+                                </h4>
+                                <div class="card-details">
+                                    <p><strong>Nome:</strong>
+                                        <%= artesanato.nome %>
+                                    </p>
+                                    <p><strong>Categoria:</strong>
+                                        <%= artesanato.categoria %>
+                                    </p>
+                                    <p><strong>Peso:</strong>
+                                        <%= artesanato.peso %>Kg
+                                    </p>
+                                </div>
+                                <div class="card-price">R$ <%= artesanato.valor%> <span></span></div>
+                                <form action="/carrinho/adicionarArtesanato/<%= artesanato.id %>" method="post">
+                                    <button type="submit" class="btn-add-cart">ADICIONAR A CESTA</button>
+                                </form>
+                            </div>
+                            <% }) %>
+                    </div>
+                </section>
+                <section class="destaques-section" id="cidades">
+                    <h3>Cidades em Destaque</h3>
+                    <div class="row cidades">
+                        <div class="col-4">
+                            <div class="card-cidade">
+                                <img src="/img/videira.png" class="img-cidade" alt="Videira">
+                                <div class="card-details">
+                                    <h2>Videira - SC</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="card-cidade">
+                                <img src="/img/iomere.png" class="img-cidade" alt="Iomerê">
+                                <div class="card-details">
+                                    <h2>Iomerê - SC</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="card-cidade">
+                                <img src="/img/pinheiropreto.png" class="img-cidade" alt="Pinheiro Preto">
+                                <div class="card-details">
+                                    <h2>Pinheiro Preto - SC</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+
+
+
+</div>
+<%- include('../cliente/partials/footer') %>

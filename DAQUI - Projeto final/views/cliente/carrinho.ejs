@@ -1,0 +1,96 @@
+
+<div class="gradiente">
+    <%- include('../cliente/partials/header') %>
+    <%- include('../cliente/partials/menu') %>
+    <main class="container cesta-pagina">
+        <div class="cesta-page-header">
+            <span class="fa-solid fa-basket-shopping fa-xl"></span>
+            <h1 class="cesta-page-title">Minha cesta</h1>
+        </div>
+        <div class="cesta-layout">
+            <!-- Coluna Esquerda: Itens -->
+            <section class="cesta-items">
+                <% if (itens.length === 0) { %>
+                    <p class="cesta-vazia">Sua cesta está vazia.</p>
+                <% } %>
+                <% itens.forEach(function(item) {
+                    const produto = item.produto;
+                %>
+                    <div class="cesta-produto-card">
+                        <!-- Imagem à esquerda -->
+                        <div class="cesta-produto-imagem">
+                            <img src="/uploads/<%= produto.imagem %>" alt="<%= produto.nome %>">
+                        </div>
+                        <!-- Informações à direita -->
+                        <div class="cesta-produto-detalhes">
+                            <!-- Nome e lixeira -->
+                            <div class="cesta-produto-header">
+                                <h2 class="cesta-produto-titulo">
+                                    <%= produto.nome %>
+                                </h2>
+                                <form action="/carrinho/remover/<%= item.tipo %>/<%= produto.id %>" method="post" class="cesta-form-remover">
+                                    <button type="submit" class="cesta-btn-lixeira" aria-label="Remover item">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                            <!-- Localização e preço unitário -->
+                            <div class="cesta-produto-info">
+                                <p class="cesta-produto-localizacao">
+                                    Videira - SC
+                                </p>
+                                <p class="cesta-produto-preco-unitario">
+                                    <strong>R$ <%= produto.valor %></strong>
+                                    <span class="cesta-unidade">/un</span>
+                                </p>
+                            </div>
+                            <!-- Quantidade e subtotal -->
+                            <div class="cesta-produto-rodape">
+                                <div class="cesta-quantidade-controles">
+                                    <form action="/carrinho/diminuir/<%= item.tipo %>/<%= produto.id %>" method="post" class="cesta-form-quantidade">
+                                        <button type="submit" class="cesta-quantidade-btn" aria-label="Diminuir quantidade">-</button>
+                                    </form>
+                                    <span class="cesta-quantidade-valor">
+                                        <%= item.quantidade %>
+                                    </span>
+                                    <form action="/carrinho/adicionar/<%= item.tipo %>/<%= produto.id %>" method="post" class="cesta-form-quantidade">
+                                        <button type="submit" class="cesta-quantidade-btn" aria-label="Aumentar quantidade">+</button>
+                                    </form>
+                                </div>
+                                <span class="cesta-produto-subtotal">
+                                    <strong>R$ <%= item.subtotal.toFixed(2) %></strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </section>
+            <!-- Coluna Direita: Resumo -->
+            <aside class="cesta-resumo">
+                <h2 class="cesta-resumo-titulo">Resumo do pedido</h2>
+                <div class="cesta-resumo-linha">
+                    <span>Subtotal (<%= totalItens %> itens)</span>
+                    <span class="cesta-resumo-preco">R$ <%= total.toFixed(2) %></span>
+                </div>
+                <hr class="cesta-resumo-divisor">
+                <div class="cesta-resumo-total">
+                    <span>TOTAL</span>
+                    <span class="cesta-resumo-valor-total">
+                        R$ <%= total.toFixed(2) %>
+                    </span>
+                </div>
+                <a href="/" class="cesta-link-continuar mb-2">
+                    Continuar Comprando &gt;
+                </a>
+                <a href="/usuario/compra/confirmacao" class="cesta-link-continuar">
+                    Finalizar Compra &gt;
+                </a>
+            </aside>
+        </div>
+    </main>
+    <%- include('../cliente/partials/footer') %>
+</div>
+

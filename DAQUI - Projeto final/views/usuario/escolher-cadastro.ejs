@@ -1,0 +1,58 @@
+<%- include('../cliente/partials/header') %>
+  <main class="escolha-pagina ">
+    <div class="escolha-fundo"></div>
+    <div class="escolha-sobreposicao"></div>
+
+    <section class="escolha-container">
+      <header class="escolha-cabecalho">
+        <div class="escolha-logo-area">
+          <img src="/img/logobranca.png" alt="DAQUI - Do nosso lugar para o seu lar" class="escolha-logo">
+        </div>
+
+        <h1>Como você quer fazer parte?</h1>
+        <p>Escolha o tipo de cadastro para continuar:</p>
+      </header>
+
+      <div class="escolha-opcoes">
+        <article class="escolha-card">
+          <div class="escolha-icone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 10h18" />
+              <path d="M5 10V21h14V10" />
+              <path d="M3 10 5 3h14l2 7" />
+              <path d="M9 21v-7h6v7" />
+              <path d="M3 10c0 2 3 3 4.5 0 1.5 3 4.5 3 6 0 1.5 3 4.5 3 6 0" />
+            </svg>
+          </div>
+
+          <h2>Sou vendedor</h2>
+          <p>Quero divulgar meus produtos e vender pelo DAQUI.</p>
+
+          <a href="/usuario/cadastro-vendedor" class="escolha-botao">
+            Cadastrar como vendedor
+          </a>
+        </article>
+
+        <article class="escolha-card">
+          <div class="escolha-icone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <circle cx="9" cy="4" r="2" />
+              <path d="M6 21V11a3 3 0 0 1 6 0v4" />
+              <path d="M9 15v6" />
+              <path d="M12 12h3l2 4" />
+              <path d="M16 15h6l-1 6h-4z" />
+            </svg>
+          </div>
+
+          <h2>Sou cliente</h2>
+          <p>Quero descobrir e comprar produtos da nossa região.</p>
+
+          <a href="/usuario/cadastro" class="escolha-botao">
+            Cadastrar como cliente
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>

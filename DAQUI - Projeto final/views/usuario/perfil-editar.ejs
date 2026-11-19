@@ -1,0 +1,73 @@
+<div class="gradiente">
+    <%- include('../cliente/partials/header') %>
+        <%- include('../cliente/partials/menu') %>
+            <main class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6">
+
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-primary text-white py-3">
+                                <h4 class="mb-0"><i class="bi bi-pencil-square me-2"></i>Editar Perfil</h4>
+                            </div>
+
+                            <div class="card-body p-4">
+
+                                <form action="/usuario/perfil/editar" method="POST" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nome completo</label>
+                                        <input type="text" name="nome" class="form-control" value="<%= usuario.nome %>"
+                                            required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">E-mail</label>
+                                        <input type="email" name="email" class="form-control"
+                                            value="<%= usuario.email %>" required>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">CPF (Não editável)</label>
+                                            <input type="text" name="cpf" class="form-control bg-light"
+                                                value="<%= usuario.cpf %>" readonly>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Telefone</label>
+                                            <input type="text" name="telefone" class="form-control"
+                                                value="<%= usuario.telefone || '' %>" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Endereço</label>
+                                        <input type="text" name="endereco" class="form-control"
+                                            value="<%= usuario.endereco || '' %>" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Cidade</label>
+                                        <input type="text" name="cidade" class="form-control"
+                                            value="<%= usuario.cidade || '' %>" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label d-block">Foto de Perfil (Deixe em branco para manter a
+                                            atual)</label>
+
+                                        <% if (usuario.foto) { %>
+                                            <img src="/uploads/<%= usuario.foto %>" class="rounded mb-2"
+                                                style="width: 80px; height: 80px; object-fit: cover;">
+                                            <% } %>
+
+                                                <input type="file" name="foto" class="form-control" accept="image/*">
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between mt-4">
+                                        <a href="/usuario/perfil" class="btn btn-outline-secondary">Cancelar</a>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="bi bi-check-circle"></i> Salvar Alterações
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <%- include('../cliente/partials/footer') %>
+</div>

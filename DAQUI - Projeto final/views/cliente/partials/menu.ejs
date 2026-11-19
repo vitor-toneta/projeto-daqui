@@ -1,0 +1,80 @@
+<!-- Cabeçalho (Navbar) -->
+<header>
+    <!-- Logotipo -->
+    <div class="logo-area">
+        <img src="/img/logo.png" alt="">
+    </div>
+
+    <!-- Barra de Pesquisa -->
+    <form action="/busca" method="get" class="pesquisar">
+        <input type="text" name="q" placeholder="O que você procura?" required>
+        <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </form>
+
+    <!-- Links de Navegação -->
+    <nav>
+        <ul>
+            <li><a href="/">Início</a></li>
+            <li><a href="/">Sobre nós</a></li>
+            <li><a href="/#cidades">Cidades</a></li>
+            <li><a href="#contato">Contato</a></li>
+
+            <!-- BOTÃO E POPUP JUNTOS AQUI -->
+            <li class="li-categorias" style="position: relative;">
+                <a href="javascript:void(0)" id="btnCategorias" style="display: flex; align-items: center; gap: 5px;">
+                    Categorias <i class="fa-solid fa-bars" style="font-size: 11px;"></i>
+                </a>
+
+                <!-- POPUP -->
+                <div class="popup-categorias" id="popupCategorias" hidden>
+                    <button class="popup-fechar" id="btnFecharCategorias" aria-label="Fechar">✕</button>
+
+                    <div class="popup-conteudo">
+                        <h3>Categorias</h3>
+
+                        <!-- O forEach roda aqui e o CSS Grid organiza em 2 colunas -->
+                        <ul class="lista-categorias">
+                            <% categorias.forEach(categoria=> { %>
+                                <li>
+                                    <a href="/categoria/<%= categoria.id %>">
+                                        <%= categoria.nome %>
+                                    </a>
+                                </li>
+                                <% }); %>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <!-- FIM DO BOTÃO E POPUP -->
+
+        </ul>
+    </nav>
+
+    <!-- Ações Direita -->
+    <div class="header-actions">
+        <a href="/carrinho" class="cart-icon">
+            <i class="fa-solid fa-basket-shopping fa-xl"></i>
+        </a>
+        <a href="<%= usuario ? '/usuario/perfil' : (vendedor ? '/admin/index' : '/usuario/login') %>">
+    <div class="user-profile" style="display: flex; align-items: center; gap: 10px;">
+        
+        <% if (usuario && usuario.foto) { %>
+            <img src="/uploads/<%= usuario.foto %>" alt="Foto" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+        <% } else if (vendedor && vendedor.foto) { %>
+            <img src="/uploads/<%= vendedor.foto %>" alt="Foto" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+        <% } else { %>
+            <div class="user-avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+        <% } %>
+        <span>
+            Olá, <%= usuario ? usuario.nome.split(' ')[0] : (vendedor ? vendedor.empresa : 'visitante') %>.
+        </span>
+
+    </div>
+</a>
+    </div>
+
+</header>

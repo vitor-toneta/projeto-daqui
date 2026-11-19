@@ -1,0 +1,68 @@
+<%- include('../partials/header') %> <%- include('../partials/menu') %>
+
+        <main class="container py-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"> <i class="bi bi-box-seam"></i> Editar Produto </h4>
+                </div>
+
+                <div class="card-body">
+                    <form action="/admin/comida/editar/<%= comida.id %>" method="POST" enctype="multipart/form-data">
+
+                        <div class="row">
+                            <div class="col-md-8 mb-3"> <label class="form-label">Nome</label> <input type="text"
+                                    name="nome" class="form-control" value="<%= comida.nome %>" required> </div>
+
+                            <div class="col-md-4 mb-3"> <label class="form-label">Categoria</label> <select
+                                    name="categoria" class="form-select" required>
+                                    <% categorias.forEach(categoria=> { %>
+                                        <option value="<%= categoria.nome %>"
+                                            <%=String(comida.categoria)===String(categoria.nome) ? 'selected' : '' %>>
+                                            <%= categoria.nome %>
+                                        </option>
+                                        <% }) %>
+                                </select> </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3"> <label class="form-label">Valor</label>
+                                <div class="input-group"> <span class="input-group-text">R$</span> <input type="number"
+                                        step="0.01" name="valor" class="form-control" value="<%= comida.valor %>"
+                                        required> </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3"> <label class="form-label">Estoque</label> <input type="number"
+                                    name="estoque" class="form-control" value="<%= comida.estoque %>" required> </div>
+
+                            <div class="col-md-4 mb-3"> <label class="form-label">Validade</label> <input type="date"
+                                    name="validade" class="form-control" value="<%= comida.validade %>"> </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3"> <label class="form-label">Peso</label> <input type="text"
+                                    name="peso" class="form-control" value="<%= comida.peso %>"> </div>
+
+                            <div class="col-md-3 mb-3"> <label class="form-label">Destaque</label><br>
+                                <input type="radio" id="sim" name="destaque" value="sim">
+                                <label for="sim">Sim</label>
+                                <input type="radio" id="nao" name="destaque" value="nao">
+                                <label for="nao">Não</label>
+                            </div>        
+
+                            <div class="col-md-6 mb-3"> <label class="form-label">Imagem</label> <input type="file"
+                                    name="imagem" class="form-control" accept="image/*"> </div>
+                        </div>
+
+                        <div class="mb-3"> <label class="form-label">Descrição</label> <textarea name="descricao"
+                                class="form-control" rows="4"><%= comida.descricao %></textarea> </div>
+
+                        <button type="submit" class="btn btn-primary"> <i class="bi bi-check-circle"></i> Salvar
+                            alterações </button>
+
+                        <a href="/admin/comida" class="btn btn-secondary"> Cancelar </a>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <%- include('../partials/footer') %>

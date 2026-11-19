@@ -1,0 +1,233 @@
+<div class="gradiente">
+    <%- include('../cliente/partials/header') %>
+        <%- include('../cliente/partials/menu') %>
+
+            <!-- CONTEÚDO PRINCIPAL DO PRODUTO -->
+            <main class="product-container">
+
+                <% if (comida) { %>
+
+                    <div class="product-image">
+                        <img src="/uploads/<%= comida.imagem %>" alt="<%= comida.nome %>">
+                    </div>
+
+                    <div class="product-info-top">
+                        <h1 class="product-title">
+                            <%= comida.nome %>
+                        </h1>
+                        <div class="product-price">R$ <%= comida.valor %> <span></span></div>
+
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-count">(16 avaliações)</span>
+                        </div>
+
+                        <div class="product-meta">
+                            <p><strong>Categoria:</strong>
+                                <%= comida.categoria %>
+                            </p>
+                            <p><strong>Peso:</strong>
+                                <%= comida.peso %>Kg
+                            </p>
+                            <% if (comida.validade) { %>
+                                <p><strong>Validade:</strong>
+                                    <%= comida.validade %>
+                                </p>
+                                <% } %>
+                                    <p><strong>Cidade:</strong> Videira - SC</p>
+                        </div>
+                    </div>
+
+                    <!-- BLOCO DE COMPRA (Agora fica em cima da descrição, ocupando a largura das duas colunas) -->
+                    <div class="purchase-action-wrapper">
+                        <div class="purchase-action">
+                            <form action="/carrinho/adicionarComida/<%=comida.id%>" method="post">
+                                <button type="submit" class="btn-add-cart"> ADICIONAR A CESTA</button>
+                            </form>
+                        </div>
+
+                        <div class="stamps">
+                            <span class="stamp-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                            <span class="stamp-icon"><i class="fa-solid fa-award"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="product-bottom-section">
+                        <div class="product-description">
+                            <h3>Descrição:</h3>
+                            <div class="description-box">
+                                <p>
+                                    <%= comida.descricao %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% } else if (artesanato) { %>
+
+                        <div class="product-image">
+                            <img src="/uploads/<%= artesanato.imagem %>" alt="<%= artesanato.nome %>">
+                        </div>
+
+                        <div class="product-info-top">
+                            <h1 class="product-title">
+                                <%= artesanato.nome %>
+                            </h1>
+                            <div class="product-price">R$ <%= artesanato.valor %> <span></span></div>
+
+                            <div class="product-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(16 avaliações)</span>
+                            </div>
+
+                            <div class="product-meta">
+                                <p><strong>Categoria:</strong>
+                                    <%= artesanato.categoria %>
+                                </p>
+                                <p><strong>Peso:</strong>
+                                    <%= artesanato.peso %>
+                                Kg</p>
+                                <p><strong>Cidade:</strong> Videira - SC</p>
+                            </div>
+                        </div>
+
+                        <!-- BLOCO DE COMPRA (Agora fica em cima da descrição, ocupando a largura das duas colunas) -->
+                        <div class="purchase-action-wrapper">
+                            <div class="purchase-action">
+                                <form action="/carrinho/adicionarArtesanato/<%=artesanato.id%>" method="post">
+                                    <button type="submit" class="btn-add-cart"> ADICIONAR A CESTA</button>
+                                </form>
+                            </div>
+
+                            <div class="stamps">
+                                <span class="stamp-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                                <span class="stamp-icon"><i class="fa-solid fa-award"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="product-bottom-section">
+                            <div class="product-description">
+                                <h3>Descrição:</h3>
+                                <div class="description-box">
+                                    <p class="descricao-produto">
+                                        <%= artesanato.descricao %>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <% } %>
+
+                            <!-- CARD DO VENDEDOR -->
+                            <div class="seller-card">
+                                <div class="seller-header">
+                                    <div class="seller-avatar"><i class="fa-solid fa-wheat-awn"></i></div>
+                                    <div class="seller-info">
+                                        <h3>Sabor da Terra</h3>
+                                        <p>Videira - SC</p>
+                                        <div class="seller-stars">★★★★★</div>
+                                    </div>
+                                </div>
+                                <button class="view-store-btn">Ver loja</button>
+                                <div class="seller-map">
+                                    <img src="/img/mapa.png" alt="Mapa de localização">
+                                </div>
+                            </div>
+
+            </main>
+
+            <!-- SEÇÃO DE AVALIAÇÕES -->
+            <section class="reviews-section">
+                <div class="reviews-header">
+                    <h2>Avaliações do produto</h2>
+                    <span class="product-subtag">Queijo colonial</span>
+                </div>
+
+                <div class="reviews-summary">
+                    <div class="score-box">
+                        <span class="big-score">5,0</span>
+                        <div class="score-stars">★★★★★</div>
+                        <span class="total-reviews">16 avaliações</span>
+                    </div>
+
+                    <div class="rating-bars">
+                        <div class="bar-row"><span>5</span>
+                            <div class="bar">
+                                <div class="fill" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="bar-row"><span>4</span>
+                            <div class="bar">
+                                <div class="fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="bar-row"><span>3</span>
+                            <div class="bar">
+                                <div class="fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="bar-row"><span>2</span>
+                            <div class="bar">
+                                <div class="fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div class="bar-row"><span>1</span>
+                            <div class="bar">
+                                <div class="fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LISTA DE COMENTÁRIOS -->
+                <div class="reviews-list">
+
+                    <!-- Comentário 1 -->
+                    <div class="review-card">
+                        <div class="user-avatar">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                                alt="Paula Mattos Silva">
+                        </div>
+                        <div class="review-content">
+                            <h4>Paula Mattos Silva</h4>
+                            <p>Adorei esse queijo colonial! O sabor é delicioso, bem característico dos queijos
+                                artesanais. A textura é muito agradável, experimente primeiro com pão caseiro e café
+                                passado na hora, e a combinação fica maravilhosa. Depois, também usei algumas fatias
+                                para derreter em um sanduíche quente, e o queijo derrete muito bem, deixando tudo ainda
+                                mais gostoso. Com certeza é de excelente qualidade e achei que valeu a pena a compra. É
+                                aquele tipo de produto que dá vontade de ter sempre na geladeira.</p>
+                        </div>
+                        <div class="review-image">
+                            <img src="https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=150&q=80"
+                                alt="Queijo">
+                        </div>
+                    </div>
+
+                    <!-- Comentário 2 -->
+                    <div class="review-card">
+                        <div class="user-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
+                                alt="Lucas Bittencourt">
+                        </div>
+                        <div class="review-content">
+                            <h4>Lucas Bittencourt</h4>
+                            <p>Queijo muito bom! Gostei bastante do sabor, que é marcante sem ser exagerado, e da
+                                consistência, que combina com diferentes tipos de preparo. Gostei de comer o queijo com
+                                pão, mas resolvi experimentar ele também com polenta e ficou excelente. Dá para perceber
+                                aquele estilo colonial que combina muito com comidas caseiras e refeições em família.
+                                Recomendo!</p>
+                        </div>
+                        <div class="review-image">
+                            <img src="https://images.unsplash.com/photo-1452195100486-9cc805987862?auto=format&fit=crop&w=150&q=80"
+                                alt="Queijo">
+                        </div>
+                    </div>
+
+                </div>
+
+                <a href="#" class="more-reviews">Ver mais avaliações &gt;</a>
+            </section>
+
+            <!-- RODAPÉ -->
+            <%- include('../cliente/partials/footer') %>
+</div>

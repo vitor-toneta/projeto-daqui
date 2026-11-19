@@ -1,0 +1,58 @@
+<div class="gradiente">
+    <%- include('../cliente/partials/header') %>
+    <%- include('../cliente/partials/menu') %>
+
+    <main class="container">
+        
+        <div class="page-header" style="margin-bottom: 30px;">
+            <span class="breadcrumb-icon">🔍</span>
+            <h1 class="page-title">Resultados da busca</h1>
+            <p style="margin-top: 10px; color: #444;">
+                Mostrando resultados para: <strong>"<%= termoBuscado %>"</strong>
+            </p>
+        </div>
+
+        <% if (produtos.length === 0) { %>
+            <div class="destaques-section">
+                <h3>Nenhum produto encontrado 😢</h3>
+                <p>Tente buscar por outro termo, como "queijo", "crochê" ou "salame".</p>
+                <a href="/" class="btn-primary" style="margin-top: 15px; margin-bottom: 50px;">Voltar para o início</a>
+            </div>
+        <% } else { %>
+            
+            <section class="destaques-section">
+                <!-- Grade de cards reaproveitada -->
+                <div class="cards-grid">
+                    
+                    <% produtos.forEach(produto => { %>
+                        <div class="product-card">
+                            
+                            <!-- Define o link correto baseado no tipo -->
+                            <a href="/produto-<%= produto.tipo %>/<%= produto.id %>">
+                                <img src="/uploads/<%= produto.imagem %>" alt="<%= produto.nome %>" class="product-img">
+                            </a>
+                            
+                            <h4><%= produto.nome %></h4>
+                            
+                            <div class="card-details" style="text-align: center;">
+                                <p style="text-transform: capitalize;"><strong>Tipo:</strong> <%= produto.tipo %></p>
+                            </div>
+                            
+                            <div class="card-price">R$ <%= produto.valor %></div>
+                            
+                            <!-- Formulário de Adicionar ao Carrinho adaptado para cada tipo -->
+                            <form action="/carrinho/adicionar<%= produto.tipo === 'comida' ? 'Comida' : 'Artesanato' %>/<%= produto.id %>" method="post">
+                                <button type="submit" class="btn-add-cart"> ADICIONAR AO CARRINHO</button>
+                            </form>
+
+                        </div>
+                    <% }) %>
+
+                </div>
+            </section>
+
+        <% } %>
+    </main>
+
+    <%- include('../cliente/partials/footer') %>
+</div>

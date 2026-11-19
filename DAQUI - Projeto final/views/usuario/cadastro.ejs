@@ -1,0 +1,90 @@
+    <%- include('../cliente/partials/header') %>
+    <%- include('../cliente/partials/menu') %>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-5">
+
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+              <h1 class="h3 titulo-secao mb-4">Criar conta</h1>
+
+              <% if (erro) { %>
+                <div class="alert alert-danger"><i class="bi bi-exclamation-circle me-1"></i>
+                  <%= erro %>
+                </div>
+                <% } %>
+
+                  <form action="/usuario/cadastro" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                      <label for="nome" class="form-label">Nome completo</label>
+                      <input type="text" class="form-control" id="nome" name="nome" value="<%= valores.nome || '' %>"
+                        required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="endereco" class="form-label">Endereço</label>
+                      <input type="text" class="form-control" id="endereco" name="endereco"
+                        placeholder="Ex: Rua das Palmeiras, 75." value="<%= valores.endereco || '' %>" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="cidade" class="form-label">Cidade</label>
+                      <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Ex: Água Doce, SC"
+                        value="<%= valores.cidade || '' %>" required>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="cpf" class="form-label">CPF</label>
+                        <input type="text" class="form-control" id="cpf" name="cpf" maxlength="14" inputmode="numeric"
+                          placeholder="___.___.___-__" value="<%= valores.cpf || '' %>" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="telefone" class="form-label">Telefone</label>
+                        <input type="text" class="form-control" id="telefone" name="telefone" placeholder="+55"
+                          value="<%= valores.telefone || '' %>" required>
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <div class="col-md-6">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="senha" name="senha" minlength="6" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email"
+                          value="<%= valores.email || '' %>" required>
+                      </div>
+                    </div>
+                    <div class="row align-items-center mt-4">
+                      <div class="col-md-6 mb-3 mb-md-0">
+                        <label for="foto" class="form-label d-block border rounded p-3 text-center"
+                          style="cursor: pointer; background-color: #f8f9fa;">
+                          <i class="bi bi-image fs-3 text-secondary d-block mb-2"></i>
+                          <span class="text-muted">Adicionar foto de perfil</span>
+                          <input type="file" id="foto" name="foto" accept="image/*" hidden>
+                        </label>
+                      </div>
+                      <div class="col-md-6 text-end">
+                        <button type="submit" class="btn btn-lg w-100"
+                          style="background: linear-gradient(to right, #e0e0e0, #357a5a); color: white; border: none;">
+                          Cadastrar
+                        </button>
+                      </div>
+                    </div>
+
+                  </form>
+
+                  <p class="text-center mt-4 mb-0">
+                    Já tem conta? <a href="/usuario/login" class="link-secao">Entrar</a>
+                  </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+  <%- include('../admin/partials/footer') %>
